@@ -12,20 +12,20 @@ def envelop():
     for k in range(1, 200, 1):
         color = colormap[k % 6]
         k = k / 10.0
-        c3 = 1/3*   1/50*((1/2*y-2*k**3) ** 3+(2*k**3)**3)
-        c2 = 1/2*   1/5*k*((1/2*y-(5*k**3-5*k**2+k))**2-(5*k**3-5*k**2+k) **2)
-        c1 = 1*1/4* 1/k*y + 1/100*4*k**6*y + (5*k**3-5*k**2+k)
-        c0 = 1/3*(k-2)**3+5*k+5
-        plt.xlim(0, 70)
-        plt.ylim(0, 70)
+        c3 = (1/5*y-k**3)**3+(k**3)**3
+        c2 = 1/10*((1/5*y-k**3)**2-(k**3) **2)
+        c1 = 1/10*k**3*y
+        c0 = (k-3)**3 +5*(-1)**10*k + 27
+        plt.xlim(0, 50)
+        plt.ylim(0, 100)
 
-        ax.plot(y, c3+c2+c1+c0, color='c', linewidth=1)
-
+        ax.plot(y, (c3+c2+c1+c0), color='c', linewidth=1)
+        
     #c = 2 * math.sqrt(6) / 3 * y
     #ax.plot(y, c, 'b-', linewidth=2, label='$k = ' + str(k) + '$')
 
     #ax.legend()
-
+    
     plt.show()
 
 
