@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.animation as animation
 
 
-def envelope(expression, **kwargs):
+def envelope(expression, with_animation=False, **kwargs):
 
     # 可変長キーワード引数（**kwargs）の初期化処理
     x_list = kwargs.get('x_list', np.arange(0, 100, 0.5))
@@ -63,8 +63,13 @@ def envelope(expression, **kwargs):
     )
     ax.plot(0, 0, color=color, linewidth=1 ,label=str(legend))
 
-    # __runの引数にparameter_listから1つずつ値を取りながら、figにグラフを描写する
-    animation.FuncAnimation(fig, __run, parameter_list, interval=5, repeat=False)
+    if with_animation:
+        # __runの引数にparameter_listから1つずつ値を取りながら、figにグラフを描写する
+        animation.FuncAnimation(fig, __run, parameter_list, interval=5, repeat=False)
+
+    else:
+        for parameter in parameter_list:
+            __run(parameter)
 
     plt.title(title)
     if xlabel:
@@ -79,8 +84,21 @@ def envelope(expression, **kwargs):
     plt.show()
 
 
-"""
+# 長期平均費用曲線を求める
 envelope(lambda y, k: 1/8 * (y - 10 * k) ** 2 + 1/3 * k ** 2 - 2 * k + 4,
+        plot_size = 5,
+        title = 'Show Average Long-Run Cost Curve',
+        xlabel = 'Y: Production',
+        ylabel = 'C: Cost',
+        legend = 'Average Short-Run Cost Curves',
+        parameter_name = 'K'
+        )
+
+
+"""
+# 長期平均費用曲線を求める（with animation）
+envelope(lambda y, k: 1/8 * (y - 10 * k) ** 2 + 1/3 * k ** 2 - 2 * k + 4,
+        True,
         plot_size = 5,
         title = 'Show Average Long-Run Cost Curve',
         xlabel = 'Y: Production',
@@ -92,6 +110,7 @@ envelope(lambda y, k: 1/8 * (y - 10 * k) ** 2 + 1/3 * k ** 2 - 2 * k + 4,
 
 
 """
+# 長期総費用曲線を求める
 envelope(lambda y, k: 1/150*((1/2*y-2*k**3) ** 3+(2*k**3)**3) + 1/10*k*((1/2*y-(5*k**3-5*k**2+k))**2-(5*k**3-5*k**2+k) **2) + (1/(4*k) + 1/25*k**6)*y + 5*k**3-5*k**2+5*k+5,
         plot_size = 200,
         title = 'Show Total Long-Run Cost Curve',
