@@ -1,5 +1,2 @@
-# envelope
-kadai
-好きなことを練習で書いてみた。
-
-### わわわっ
+課題1　長期総費用曲線
+[cost curve](image/env.png)
