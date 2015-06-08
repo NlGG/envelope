@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #-*- encoding: utf-8 -*-
 # Quantitative Economics Web: http://quant-econ.net/py/index.html
-# 尾山ゼミwiki: http://oyamazemi.wiki.fc2.com/
+
 
 from __future__ import division
 import math
@@ -91,7 +91,20 @@ envelope(lambda y, k: 1/8 * (y - 10 * k) ** 2 + 1/3 * k ** 2 - 2 * k + 4,
 """
 
 
-envelope(lambda y, k: 1/3 * 1/50*((1/2*y-2*k**3) ** 3+(2*k**3)**3) + 1/2 * 1/5*k*((1/2*y-(5*k**3-5*k**2+k))**2-(5*k**3-5*k**2+k) **2) + 1 * 1/4 * 1/k * y + 1/100*4*k**6*y + (5*k**3-5*k**2+k) + 1/3*(k-2)**3+5*k+5)
+"""
+envelope(lambda y, k: 1/150*((1/2*y-2*k**3) ** 3+(2*k**3)**3) + 1/10*k*((1/2*y-(5*k**3-5*k**2+k))**2-(5*k**3-5*k**2+k) **2) + (1/(4*k) + 1/25*k**6)*y + 5*k**3-5*k**2+5*k+5,
+        plot_size = 200,
+        title = 'Show Total Long-Run Cost Curve',
+        xlabel = 'Y: Production',
+        ylabel = 'C: Cost',
+        legend = 'Total Short-Run Cost Curves',
+        parameter_name = 'K',
+        xlim = [0, 100],
+        ylim = [0, 300],
+        xlist = np.arange(0, 200, 0.5),
+        parameter_list = np.arange(0.05, 5.05, 0.05)
+        )
+"""
 
 
 
