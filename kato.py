@@ -35,8 +35,9 @@ class KatoStrategy(object):
             return 0
         
     def research2(self):
-        if self.signals[-1] == 1 and self.signals[-2] == 1 and self.signals[-3] == 1:
-            return 1
+        for i in range(len(self.signals)-3):
+            if self.signals[-i-1] == 1 and self.signals[-i-2] == 1 and self.signals[-i-3] == 1:
+                return 1
         else:
             return 0
         
@@ -69,12 +70,7 @@ class KatoStrategy(object):
             elif lem(self.myself) >= 20 and research3_result == 1:
                 return self.attack_action()
             else:
-                epsilon = self.random_state.uniform()
-                if epsilon < 0.1 and prior_signal == 1:
-                    self.my_history.append(1)
-                    return 1
-                else:
-                    return self.normal_action()
+                return self.normal_action()
 
     def get_signal(self, signal):
         self.signals.append(1)
